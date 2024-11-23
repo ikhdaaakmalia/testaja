@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Home - Pencatatan Bibit dan Pupuk</title>
+</head>
+<body>
+  <h1>Media Pencatatan Bibit dan Pupuk</h1>
+
+  <hr>
+  <!-- Bibit Section -->
+  <h2>Daftar Bibit</h2>
+  <table border="1" cellpadding="10">
+    <thead>
+      <tr>
+        <th>Nama</th>
+        <th>Jenis</th>
+        <th>Stok</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% bibits.forEach((bibit) => { %>
+        <tr>
+          <td><%= bibit.nama %></td>
+          <td><%= bibit.jenis %></td>
+          <td><%= bibit.stok %></td>
+          <td>
+            <!-- Form Edit -->
+            <form method="POST" action="/bibit/edit/<%= bibit.id %>" style="display:inline;">
+              <input type="text" name="nama" value="<%= bibit.nama %>" required>
+              <input type="text" name="jenis" value="<%= bibit.jenis %>" required>
+              <input type="number" name="stok" value="<%= bibit.stok %>" required>
+              <button type="submit">Update</button>
+            </form>
+            <!-- Form Delete -->
+            <form method="POST" action="/bibit/delete/<%= bibit.id %>" style="display:inline;">
+              <button type="submit">Hapus</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+  <!-- Form Tambah Bibit -->
+  <h3>Tambah Bibit</h3>
+  <form method="POST" action="/bibit">
+    <input type="text" name="nama" placeholder="Nama Bibit" required>
+    <input type="text" name="jenis" placeholder="Jenis Bibit" required>
+    <input type="number" name="stok" placeholder="Stok" required>
+    <button type="submit">Tambah</button>
+  </form>
+
+  <hr>
+  <!-- Pupuk Section -->
+  <h2>Daftar Pupuk</h2>
+  <table border="1" cellpadding="10">
+    <thead>
+      <tr>
+        <th>Nama</th>
+        <th>Kandungan</th>
+        <th>Stok</th>
+        <th>Aksi</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% pupuks.forEach((pupuk) => { %>
+        <tr>
+          <td><%= pupuk.nama %></td>
+          <td><%= pupuk.kandungan %></td>
+          <td><%= pupuk.stok %></td>
+          <td>
+            <!-- Form Edit -->
+            <form method="POST" action="/pupuk/edit/<%= pupuk.id %>" style="display:inline;">
+              <input type="text" name="nama" value="<%= pupuk.nama %>" required>
+              <input type="text" name="kandungan" value="<%= pupuk.kandungan %>" required>
+              <input type="number" name="stok" value="<%= pupuk.stok %>" required>
+              <button type="submit">Update</button>
+            </form>
+            <!-- Form Delete -->
+            <form method="POST" action="/pupuk/delete/<%= pupuk.id %>" style="display:inline;">
+              <button type="submit">Hapus</button>
+            </form>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+  <!-- Form Tambah Pupuk -->
+  <h3>Tambah Pupuk</h3>
+  <form method="POST" action="/pupuk">
+    <input type="text" name="nama" placeholder="Nama Pupuk" required>
+    <input type="text" name="kandungan" placeholder="Kandungan Pupuk" required>
+    <input type="number" name="stok" placeholder="Stok" required>
+    <button type="submit">Tambah</button>
+  </form>
+</body>
+</html>
